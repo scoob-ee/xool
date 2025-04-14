@@ -70,7 +70,6 @@
             255,
             128
         ],
-        "_comment_replace_area_enabled": "Set to true to replace a specific rectangle instead of using general position.",
         "replace_area_enabled": true,
         "_comment_replace_area_coords": "Coordinates [x0, y0, x1, y1] of the rectangle to replace. MEASURE THESE CAREFULLY.",
         "replace_area_coords": [

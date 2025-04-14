@@ -9,8 +9,13 @@ Xool is a tool for automatically scraping, filtering, and uploading clothing ite
 *   Advanced duplicate image detection using multiple hashing algorithms.
 *   NSFW content filtering.
 *   Blacklisting creators or specific keywords.
-*   Automatic uploading to specified Roblox groups.
-*   Optional custom watermarking.
+*   Automatic uploading to specified Roblox groups.*   
+*   Custom watermarking.
+
+## Requirements
+
+*   **Python 3.7.9**: This specific version is required. See installation instructions below for setting up a virtual environment with this version.
+*   Dependencies listed in `requirements.txt`.
 
 ## Installation
 
@@ -20,31 +25,57 @@ Xool is a tool for automatically scraping, filtering, and uploading clothing ite
     cd xool-main # Or your project directory name
     ```
 
-2.  **Set up a virtual environment (Recommended):**
-    ```bash
-    python -m venv venv
-    # On Windows
-    .\venv\Scripts\activate
-    # On macOS/Linux
-    source venv/bin/activate
-    ```
+2.  **Set up a Python 3.7.9 Virtual Environment (Recommended):**
+    
+    Using the correct Python version is crucial. A virtual environment keeps dependencies isolated.
 
-3.  **Install dependencies:**
+    *   **Method 1: Using `pyenv` (Recommended for managing multiple Python versions):**
+        *   Install `pyenv` and `pyenv-virtualenv` (follow their official installation guides for your OS).
+        *   Install Python 3.7.9: `pyenv install 3.7.9`
+        *   Create a virtual environment: `pyenv virtualenv 3.7.9 xool-venv-3.7.9`
+        *   Activate the environment: `pyenv activate xool-venv-3.7.9` (or use `pyenv local xool-venv-3.7.9` to activate automatically when in the directory).
+
+    *   **Method 2: Using Python's built-in `venv` (If you have Python 3.7.9 installed system-wide or available):**
+        *   Ensure you are using your Python 3.7.9 executable.
+        *   Create the environment: `python3.7 -m venv venv` (or `python -m venv venv` if `python` points to 3.7.9)
+        *   Activate:
+            *   Windows: `.\venv\Scripts\activate`
+            *   macOS/Linux: `source venv/bin/activate`
+
+3.  **Install dependencies (inside the activated virtual environment):**
     ```bash
     pip install -r requirements.txt
     ```
 
 ## Configuration
 
-1.  **Copy/Rename `config.example.json` to `config.json`** (if an example file exists, otherwise create `config.json` manually).
+Configuration is handled through the `config.json` file.
 
-2.  **Edit `config.json`:**
-    *   **`groups`**: Add your Roblox Group ID(s).
-    *   **`uploader_cookies`**: VERY IMPORTANT - Add the `.ROBLOSECURITY` cookie for an account that has permission to upload to the specified group(s). Find this in your browser's developer tools (Application > Cookies).
-        *   **Security Warning:** Never share your `.ROBLOSECURITY` cookie. Treat it like a password.
-    *   **`assets_price`**: Set the price for uploaded items.
-    *   **`max_nudity_value`**: Adjust NSFW filter sensitivity (0.0 to 1.0, lower is stricter).
-    *   Review and adjust other settings like `search_keywords`, `search_strategy`, `duplicate_detection`, and `custom_watermark` as needed.
+**Steps:**
+
+1.  **Locate `config.json`**: This file should be in the root directory of the project.
+
+2.  **Edit `config.json`**: Open the file in a text editor.
+    *   **`groups`**: This is a dictionary where each key is a Roblox Group ID (as a string) that you want the bot to interact with.
+    *   **`uploader_cookies`**: **VERY IMPORTANT** - Inside *each* group ID object within `groups`, you **must** add/edit the `uploader_cookies` key. This should be a list containing **one** string: your `.ROBLOSECURITY` cookie for an account that has permission to upload to that specific group.
+        *   Find this cookie in your browser's developer tools (usually under Application -> Cookies for the Roblox domain).
+        *   **Example Structure:**
+          ```json
+          {
+              "groups": {
+                  "1234567": { 
+                      "uploader_cookies": ["_|WARNING:-DO-NOT-SHARE-THIS...YourCookieValueHere...|_"],
+                      "_comment": "Optional: Add comments for this group"
+                  },
+                  "9876543": {
+                      "uploader_cookies": ["_|WARNING:-DO-NOT-SHARE-THIS...AnotherCookieValue...|_"]
+                  }
+              },
+              // ... other settings ...
+          }
+          ```
+        *   Replace the placeholder cookie with your actual cookie value.
+    *   **Other Settings**: Review and adjust other settings like `assets_price`, `search_strategy`, `duplicate_detection`, `custom_watermark`, etc., to your preferences.
 
 ## Usage
 
@@ -70,8 +101,7 @@ The search system:
 2. Randomly picks one keyword from your list for each search cycle.
 3. Applies search result sorting/filtering based on the `search_strategy` settings:
    - **mode**: `popular` (most favorited/purchased), `newest` (most recent), `relevant` (most relevant to the keyword), `random`.
-   - **min_price** / **max_price**: Price range filters.
-   - **limit**: Maximum number of results to fetch per keyword search.
+
 
 #### Configuration
 
@@ -150,6 +180,21 @@ You can fine-tune the duplicate detection in your `config.json` file:
   - Increase the threshold values (e.g., `phash: 5`)
   - Increase `min_algorithm_matches` (e.g., `3` or `4`)
 
+### Duplicate Upload Prevention (Upload Log)
+
+To prevent uploading the exact same asset to the same group multiple times across different sessions, the tool utilizes an upload log.
+
+#### How It Works
+
+1.  **Central Log File:** A single file, `src/assets/upload_logs/upload_log.txt`, keeps a history of all successful uploads.
+2.  **Image Hashing:** Before attempting an upload, the script calculates a unique SHA256 hash (a digital fingerprint) of the image file.
+3.  **Logging on Success:** When an asset is successfully uploaded and released for sale, a new line is added to `upload_log.txt`. This line contains the Group ID the asset was uploaded to and the calculated image hash, separated by a comma (e.g., `1234567,a1b2c3d4e5f6...`).
+4.  **Pre-Upload Check:** Before uploading any new asset, the script checks this log file. If a line already exists matching both the target Group ID and the hash of the image about to be uploaded, the upload is skipped, and a message is logged indicating it's a duplicate based on the upload history.
+
+This ensures that even if you restart the script or process the same source images again, you won't waste time or Robux uploading identical assets to groups where they already exist.
+
 ## Requirements
 
-See `requirements.txt` for the full list of Python dependencies. 
+- **Python 3.7.9** (See Installation section)
+- Dependencies listed in `requirements.txt`. #   X o o l  
+ 
