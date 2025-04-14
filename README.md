@@ -19,8 +19,8 @@ Xool is a tool for automatically scraping, filtering, and uploading clothing ite
 ## Installation
 ### 1. Clone the repository
 ```bash
-git clone <repository-url> # Replace <repository-url> with the actual URL
-cd xool-main # Or your project directory name
+git clone https://github.com/scoob-ee/xool
+cd xool-main
 ```
 
 ### 2. Set up Python 3.7.9 Virtual Environment
