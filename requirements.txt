@@ -1,0 +1,11 @@
+requests>=2.31.0
+Pillow-SIMD>=10.0.1.post1
+imagehash>=4.3.1
+numpy>=1.21.0
+tensorflow>=2.13.1
+opennsfw2>=0.4.0
+tqdm>=4.66.1
+requests-toolbelt>=1.0.0
+colorama==0.4.6
+questionary==2.0.1
+unidecode
