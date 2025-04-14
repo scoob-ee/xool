@@ -1,37 +1,23 @@
 {
     "groups": {
-        "_comment_group_id": "Replace '' with your actual group ID. Add more group IDs as needed.",
-        "35859090": {
-            "_comment_uploader_cookies": "List of .ROBLOSECURITY cookies for accounts that can upload to this group.",
+        "replacewithyourgroupid": {
             "uploader_cookies": [
-                "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_32FBCA25F58D14B6A60902F916A245846C58B50E7C8BBBA0D2893C7869DA888EE81AD7576435AF49E5B87FB274C9976ABE4275A8A0AD1A20B2CC233A3EC02784DDEE8E52162FC8D153962707C0A13E6C6DDBB6C399844A0278ADB01A2ED1779FC785E82FC5D2A810F094CC851128AAA7327B40918F1782CF05E62A42208F7FB9C219EB886659B2CFB6A4420B3518F09279FEC79CEE8FEA4738771BAECE9E353778A3128F1D3449A8D5DC059A35008B73DEC06355174C4EE20002E453A79E7A9216006FCA957E032D5FDFF970105EEE89F82964AFFD5F73CDFFF8CC42E6DA25AEF168CDDFEF4E000C7417BBB7A214CF18FE64367385194D32B44574251C53CE41529DF4A03BAEA53F20EBB2ECD93393082AFDBF9733D0E33C7265C9F389C5D0D08000519657C3B958CE357F105A30D351C7E2DC965D371052414AA77036866B3BEC3AF20C5BE68ACB657CAF96B4FB6AAC9E530B0BA2FD55D80FD2E722A5873DDAF057995F58740517CB03D8C2CCBAFD13FB1D23003C7C21965A7E1EE48BCCA3CD541ADD3BC2CC33CA09C2F445BE693CC6E9651705379200D675539C04A0DBF620AFCC6C513ADDB83992FD20659FB2BADA2E03C77123ECF19BBD52F64D250CDBDCEC0AB08EC581538B7D78034328EA4EE5C8F43657AB41411ADB6DE35F17DEAB0B47608250CA39E9E73E4630492DDE1AA77153A62D5F07B5782DBCDB126382ADBD3EE166D1BBEA46F4E1B19B624C482EE671E7B0F66ED3D21A12CE11F7CB0CBF7830644573C26B41EDA2133DDCB3D9DDED5F6AAC81130057C5E94CCB859AA1C2E862F93399BC8F7F48F9E7770937641368F053B461E5E0795E27D8AA58A27331A1AD6C87205ADAAA7AAED8A3B2BDA0C740477EEF866F94CEDC0ECDFC8BCECA58DB7BFA623FB431BFBA7E5ECBFFA2CE9710A745D23BFF2AA85146B72B551C07E51B01E4FC73C4BEB46B0B06DE949477928A58AAFA0187D88A46BBAF7459B7BA19DFB4EB90122218AA841AFF5A0E382243953DD803ACD77C59F4F64C890F2F82E6FDD8768B74ACF5A8D0B408DD2DCC737FE88AE398A6A106FB806A69804E66FAFA371CFABD10"
+                "replacewithyourcookie"
             ]
         }
     },
-    "_comment_sleep_each_upload": "Seconds to pause between each successful asset upload.",
     "sleep_each_upload": 0.5,
-    "_comment_assets_price": "The price (in Robux) to set for uploaded assets.",
     "assets_price": 5,
-    "_comment_description": "The default description text for uploaded assets.",
-    "description": "SHOP 92.0 STUDIOS",
-    "_comment_max_nudity_value": "NSFW filter sensitivity (0.0 to 1.0). Higher values allow more. Recommended: 0.1-0.3.",
+    "description": "",
     "max_nudity_value": 0.1,
-    "_comment_upload_without_blacklisted_words": "If true, attempts to upload even if blacklisted words are found in the name (proceed with caution).",
     "upload_without_blacklisted_words": true,
-    "_comment_require_one_tag_in_name": "(Currently unused feature placeholder)",
     "require_one_tag_in_name": false,
-    "_comment_upload_amount": "Maximum number of assets to attempt uploading per run.",
     "upload_amount": 20,
-    "_comment_delete_all_images_on_restart": "If true, clears the src/assets/shirts and src/assets/pants folders on startup.",
     "delete_all_images_on_restart": false,
-    "_comment_dupe_check": "Enable/disable checking for duplicate images before uploading.",
     "dupe_check": true,
     "duplicate_detection": {
-        "_comment_use_advanced": "Use multiple hashing algorithms for stricter checking (recommended).",
         "use_advanced": true,
-        "_comment_min_algorithm_matches": "How many hashing algorithms must agree for an image to be considered a duplicate.",
         "min_algorithm_matches": 4,
-        "_comment_thresholds": "Maximum difference allowed for each hash type (lower = stricter).",
         "thresholds": {
             "phash": 3,
             "dhash": 3,
@@ -40,30 +26,18 @@
             "colorhash": 4
         }
     },
-    "_comment_search_strategy": "Settings for how to find assets on the catalog.",
     "search_strategy": {
-        "_comment_mode": "Search sort order ('relevant', 'newest', 'popular', 'random').",
         "mode": "relevant",
-        "_comment_min_price": "Minimum price of assets to search for (Robux).",
         "min_price": 5,
-        "_comment_max_price": "Maximum price of assets to search for (Robux, 0 = no limit).",
         "max_price": 100,
-        "_comment_limit": "Maximum number of assets to fetch per search request (max 120).",
         "limit": 120
     },
-    "_comment_custom_watermark": "Settings for applying a custom watermark to downloaded assets.",
     "custom_watermark": {
-        "_comment_enabled": "Set to true to apply the custom watermark.",
         "enabled": true,
-        "_comment_text": "The text content of the watermark.",
-        "text": "92.0 studios",
-        "_comment_font_path": "Path to the .ttf or .otf font file. Use forward slashes (/) or double backslashes (\\).",
-        "font_path": "C:/xool-main/MartianMono-ExtraBold.ttf",
-        "_comment_font_size": "Font size in points.",
+        "text": "shop",
+        "font_path": "arial.ttf",
         "font_size": 16,
-        "_comment_position": "General position if 'replace_area_enabled' is false ('bottom_center', 'bottom_left', etc.).",
         "position": "bottom_center",
-        "_comment_color": "General RGBA color for the watermark text [R, G, B, Alpha (0-255)]. Used when 'replace_area_enabled' is false.",
         "color": [
             255,
             255,
@@ -71,20 +45,17 @@
             128
         ],
         "replace_area_enabled": true,
-        "_comment_replace_area_coords": "Coordinates [x0, y0, x1, y1] of the rectangle to replace. MEASURE THESE CAREFULLY.",
         "replace_area_coords": [
             232,
             203,
             360,
             269
         ],
-        "_comment_replace_area_color": "RGB color [R, G, B] for the background of the replaced area.",
         "replace_area_color": [
             0,
             0,
             0
         ],
-        "_comment_text_color_override": "RGBA color [R, G, B, Alpha] for the text specifically inside the replaced area.",
         "text_color_override": [
             255,
             255,
