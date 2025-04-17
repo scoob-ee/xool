@@ -1528,6 +1528,30 @@ if __name__ == "__main__":
     # Set the level on the root logger itself
     root_logger.setLevel(log_level)
 
+    # --- Add File Handler for Debug Mode ---
+    if args.debug:
+        try:
+            log_filename = 'debug.log'
+            # Create a FileHandler, overwrite file each run ('w')
+            file_handler = logging.FileHandler(log_filename, mode='w', encoding='utf-8')
+            file_handler.setLevel(logging.DEBUG) # Log all debug messages to the file
+
+            # Create a standard Formatter for the file log
+            file_formatter = logging.Formatter(
+                fmt='%(asctime)s - %(levelname)-8s - %(name)-15s - %(message)s', # Detailed format
+                datefmt='%Y-%m-%d %H:%M:%S'
+            )
+            file_handler.setFormatter(file_formatter)
+
+            # Add the FileHandler to the root logger
+            root_logger.addHandler(file_handler)
+            # Log confirmation to console (and potentially the file itself)
+            logging.info(f"Debug mode active. Logging detailed output to: {log_filename}")
+        except Exception as e:
+            # Log error to console if file logging setup fails
+            logging.error(f"Failed to set up debug file logging to {log_filename}: {e}")
+    # --- End File Handler Setup ---
+
     # Configure TensorFlow logger level separately (after setting up root logger)
     if args.debug:
         tensorflow.get_logger().setLevel(logging.WARNING)
